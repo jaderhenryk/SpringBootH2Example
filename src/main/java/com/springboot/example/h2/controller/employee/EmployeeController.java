@@ -1,4 +1,4 @@
-package com.springboot.example.h2.controller;
+package com.springboot.example.h2.controller.employee;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.example.h2.exception.ResourceNotFoundException;
 import com.springboot.example.h2.model.employee.Employee;
-import com.springboot.example.h2.repository.EmployeeRepository;
+import com.springboot.example.h2.repository.employee.EmployeeRepository;
 
 @RestController
 @RequestMapping("/api/v1/employees")

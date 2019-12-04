@@ -23,7 +23,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import com.springboot.example.h2.model.company.Company;
 
 @Entity
-@Table(name = "employees", uniqueConstraints = @UniqueConstraint(columnNames = {"name, email"}))
+@Table(name = "employees", uniqueConstraints = @UniqueConstraint(columnNames = {"name", "email"}))
 public class Employee {
 
 	@Id

@@ -1,4 +1,4 @@
-package com.springboot.example.h2.repository;
+package com.springboot.example.h2.repository.employee;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
