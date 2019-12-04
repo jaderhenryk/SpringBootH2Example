@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springboot.example.h2.exception.ResourceNotFoundException;
-import com.springboot.example.h2.model.base.employee.Employee;
+import com.springboot.example.h2.model.employee.Employee;
 import com.springboot.example.h2.repository.EmployeeRepository;
 
 @RestController
