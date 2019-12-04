@@ -7,16 +7,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.springboot.example.h2.model.company.Company;
+
 @Entity
-@Table(name = "employees")
+@Table(name = "employees", uniqueConstraints = @UniqueConstraint(columnNames = {"name, email"}))
 public class Employee {
 
 	@Id
@@ -38,13 +45,25 @@ public class Employee {
 	@Column(name = "salary")
 	@Positive
     private double salary;
+	@JoinColumn(name = "companyid")
+	@NotNull
+	@ManyToOne
+	@OnDelete(action = OnDeleteAction.CASCADE)
+	private Company company;
     
     public Employee() {}
     
-    public Employee(String name, String email, String role) {
+    public Employee(String name, String email, Company company) {
         this.name = name;
         this.email = email;
-        this.role = role;
+        this.company = company;
+    }
+    
+    public Employee(String name, String email, Company company, String role, double salary, LocalDate admissionDate) {
+    	this(name, email, company);
+    	this.role = role;
+    	this.salary = salary;
+    	this.admissionDate = admissionDate;
     }
     
     public long getId() {
@@ -83,4 +102,10 @@ public class Employee {
     public void setSalary(double salary) {
         this.salary = salary;
     }
+	public Company getCompany() {
+		return company;
+	}
+	public void setCompany(Company company) {
+		this.company = company;
+	}
 }
