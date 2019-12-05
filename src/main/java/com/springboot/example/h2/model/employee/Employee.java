@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -22,6 +23,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 
 import com.springboot.example.h2.model.company.Company;
 
+@Valid
 @Entity
 @Table(name = "employees", uniqueConstraints = @UniqueConstraint(columnNames = {"name", "email"}))
 public class Employee {

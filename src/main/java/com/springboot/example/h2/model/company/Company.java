@@ -10,11 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 import com.springboot.example.h2.model.employee.Employee;
 
+@Valid
 @Entity
 @Table(name = "companies", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Company {
@@ -62,5 +64,11 @@ public class Company {
 	}
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
+	}
+	public Company setCompanyAttributes(Company company) {
+		this.name = company.getName();
+		this.address = company.getAddress();
+		this.employees = company.getEmployees();
+		return this;
 	}
 }

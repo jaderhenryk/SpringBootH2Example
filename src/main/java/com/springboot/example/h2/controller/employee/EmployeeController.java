@@ -2,8 +2,6 @@ package com.springboot.example.h2.controller.employee;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -38,14 +36,14 @@ public class EmployeeController {
     }
     
     @PostMapping
-    public ResponseEntity<Employee> create(@Valid @RequestBody Employee employee) {
+    public ResponseEntity<Employee> create(@RequestBody Employee employee) {
         return ResponseEntity.ok(employeeRepository.save(employee));
     }
     
     @PutMapping(value = "/{id}")
     public ResponseEntity<Employee> update(
             @PathVariable(name = "id") Long id,
-            @Valid @RequestBody Employee employeeDetails) throws ResourceNotFoundException {
+            @RequestBody Employee employeeDetails) throws ResourceNotFoundException {
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id ::" + id));
         employee.setName(employeeDetails.getName());
         employee.setEmail(employeeDetails.getEmail());
@@ -60,6 +58,6 @@ public class EmployeeController {
     public ResponseEntity<String> delete(@PathVariable(name = "id") Long id) throws ResourceNotFoundException {
         employeeRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id ::" + id));
         employeeRepository.deleteById(id);
-        return ResponseEntity.ok("Deleted!");
+        return ResponseEntity.ok("Deleted successfully!");
     }
 }
