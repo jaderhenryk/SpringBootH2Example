@@ -25,7 +25,7 @@ import com.springboot.example.h2.model.company.Company;
 
 @Valid
 @Entity
-@Table(name = "employees", uniqueConstraints = @UniqueConstraint(columnNames = {"name", "email"}))
+@Table(name = "employee", uniqueConstraints = @UniqueConstraint(columnNames = {"name", "email"}))
 public class Employee {
 
 	@Id
